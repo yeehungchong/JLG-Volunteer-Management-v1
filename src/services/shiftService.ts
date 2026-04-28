@@ -1,6 +1,7 @@
 import {
   collection,
   doc,
+  getDoc,
   runTransaction,
   serverTimestamp,
   writeBatch
@@ -171,16 +172,15 @@ export async function checkInOutVolunteer(
 
 export async function completeShift(shiftId: string, userId: string): Promise<void> {
   const shiftRef = doc(db, 'shifts', shiftId);
-  const postShiftChecklistRef = doc(db, `shifts/${shiftId}/shiftChecklists`, 'post-shift');
+  const checklistsRef = collection(db, `shifts/${shiftId}/shiftChecklists`);
 
   await runTransaction(db, async (trx) => {
     const shiftSnap = await trx.get(shiftRef);
     if (!shiftSnap.exists()) throw new Error('Shift not found.');
 
-    const postChecklistSnap = await trx.get(postShiftChecklistRef);
-    if (!postChecklistSnap.exists()) {
-      throw new Error('Cannot complete shift before post-shift checklist is completed.');
-    }
+    const checklistsSnap = await getDoc(doc(checklistsRef, 'post-shift'));
+    const postShiftExists = checklistsSnap.exists();
+    if (!postShiftExists) throw new Error('Cannot complete shift before post-shift checklist is completed.');
 
     trx.update(shiftRef, {
       status: 'Completed',
@@ -196,38 +196,6 @@ export async function completeShift(shiftId: string, userId: string): Promise<vo
     performedBy: userId,
     afterData: { status: 'Completed' },
     remarks: 'Complete shift'
-  });
-}
-
-export async function selectVolunteer(
-  shiftId: string,
-  shiftVolunteerId: string,
-  assignedShiftRole: string,
-  selectionRemarks: string,
-  userId: string
-): Promise<void> {
-  const ref = doc(db, `shifts/${shiftId}/shiftVolunteers`, shiftVolunteerId);
-
-  await runTransaction(db, async (trx) => {
-    const snap = await trx.get(ref);
-    if (!snap.exists()) throw new Error('Shift volunteer not found.');
-
-    trx.update(ref, {
-      selectedByReportingOfficer: true,
-      assignedShiftRole,
-      selectionRemarks,
-      UpdatedBy: userId,
-      UpdatedAt: serverTimestamp()
-    });
-  });
-
-  await writeAuditLog({
-    entityType: 'shiftVolunteer',
-    entityId: shiftVolunteerId,
-    action: 'Update',
-    performedBy: userId,
-    afterData: { selectedByReportingOfficer: true, assignedShiftRole, selectionRemarks },
-    remarks: 'Select volunteer and assign shift role'
   });
 }
 

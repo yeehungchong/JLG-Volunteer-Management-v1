@@ -13,17 +13,14 @@ Production-ready backend-first scaffold for managing volunteers, shifts, checkli
 8. **Audit helper functions**: `src/utils/audit.ts`
 9. **Seed data**: `seeds/seedData.json`, `scripts/seed.ts`
 10. **Example Firestore documents**: `docs/sample-documents.json`
-11. **Frontend design + component stubs**: `docs/frontend-design.md`, `src/frontend/*`
-12. **Environment template**: `.env.example`
+11. **Maintainable TypeScript project layout** with strict typing and validation utilities.
 
 ## Setup
 ```bash
-cp .env.example .env
 npm install
 npm run lint
 npm run build
 npm run seed
-npm run frontend:design
 ```
 
 ## Role Hierarchy

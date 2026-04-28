@@ -2,7 +2,6 @@
 
 ```text
 .
-├── .env.example
 ├── docs/
 ├── firestore/
 ├── scripts/
@@ -10,11 +9,6 @@
 └── src/
     ├── config/
     ├── constants/
-    ├── frontend/
-    │   ├── app/
-    │   ├── components/
-    │   ├── pages/
-    │   └── styles/
     ├── screens/
     ├── services/
     ├── types/
