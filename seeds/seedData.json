@@ -1,0 +1,31 @@
+{
+  "roles": [
+    "System Administrator",
+    "Volunteer Leader",
+    "Reporting Officer",
+    "Duty Officer",
+    "Shift Officer",
+    "Volunteer"
+  ],
+  "shiftStatuses": [
+    "Draft",
+    "Volunteer List Added",
+    "Pending Reporting Officer Review",
+    "Volunteers Selected",
+    "Ready for Shift",
+    "Pre-Shift Checklist Completed",
+    "Shift In Progress",
+    "Post-Shift Checklist Completed",
+    "Pending Completion",
+    "Completed",
+    "Cancelled"
+  ],
+  "shiftRoles": [
+    "Traffic Control",
+    "Registration",
+    "Medical Support",
+    "Logistics",
+    "Crowd Marshal"
+  ],
+  "checklistTypes": ["PreShift", "PostShift"]
+}
