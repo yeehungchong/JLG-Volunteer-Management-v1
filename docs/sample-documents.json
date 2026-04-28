@@ -1,0 +1,67 @@
+{
+  "users/admin01": {
+    "userId": "admin01",
+    "displayName": "System Admin",
+    "email": "admin@jlg.org",
+    "roles": ["System Administrator"],
+    "status": "Active",
+    "CreatedBy": "system",
+    "CreatedAt": "<serverTimestamp>",
+    "UpdatedBy": "system",
+    "UpdatedAt": "<serverTimestamp>"
+  },
+  "volunteers/vol001": {
+    "volunteerId": "vol001",
+    "fullName": "Alex Tan",
+    "contactNumbers": ["+65 8123 4567"],
+    "emailAddresses": ["alex.tan@example.com"],
+    "race": "Chinese",
+    "experienceLevel": "Intermediate",
+    "skills": ["First Aid", "Crowd Control"],
+    "certifications": ["CPR"],
+    "status": "Active",
+    "remarks": "Available weekends",
+    "CreatedBy": "leader01",
+    "CreatedAt": "<serverTimestamp>",
+    "UpdatedBy": "leader01",
+    "UpdatedAt": "<serverTimestamp>"
+  },
+  "shifts/shift001": {
+    "shiftId": "shift001",
+    "title": "Community Event Support",
+    "startDateTime": "2026-06-01T09:00:00Z",
+    "endDateTime": "2026-06-01T17:00:00Z",
+    "location": "JLG HQ",
+    "description": "Main hall operations",
+    "status": "Pending Reporting Officer Review",
+    "createdByUserId": "leader01",
+    "emailNotificationStatus": "Not Sent",
+    "CreatedBy": "leader01",
+    "CreatedAt": "<serverTimestamp>",
+    "UpdatedBy": "leader01",
+    "UpdatedAt": "<serverTimestamp>"
+  },
+  "shifts/shift001/shiftVolunteers/sv001": {
+    "shiftVolunteerId": "sv001",
+    "volunteerId": "vol001",
+    "volunteerSnapshot": {
+      "fullName": "Alex Tan",
+      "contactNumbers": ["+65 8123 4567"],
+      "emailAddresses": ["alex.tan@example.com"],
+      "race": "Chinese",
+      "experienceLevel": "Intermediate",
+      "skills": ["First Aid", "Crowd Control"],
+      "certifications": ["CPR"]
+    },
+    "intendedToJoin": true,
+    "selectedByReportingOfficer": true,
+    "assignedShiftRole": "Medical Support",
+    "selectionRemarks": "Good fit for first aid station",
+    "attendanceStatus": "Pending",
+    "completionStatus": "Pending",
+    "CreatedBy": "leader01",
+    "CreatedAt": "<serverTimestamp>",
+    "UpdatedBy": "report01",
+    "UpdatedAt": "<serverTimestamp>"
+  }
+}
